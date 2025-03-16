@@ -1,3 +1,4 @@
+## Import necessary libraries
 import os
 import csv
 import requests
@@ -44,7 +45,7 @@ def download_image(iiif_url, save_path):
 
 def main():
     # Set paths and create output directory
-    output_dir = "nga_images_fast"
+    output_dir = "NGA_images"
     metadata_csv = "/Users/abhinavkumar/Desktop/RAG/published_images.csv"
     
     os.makedirs(output_dir, exist_ok=True)
@@ -102,10 +103,6 @@ def main():
     
     print(f"\nDownloaded {download_count} images. Skipped {skipped_count} images.")
     print(f"Image metadata saved to {metadata_output}")
-    
-    # If successful, provide instructions for downloading the full dataset
-    if download_count > 0:
-        print("\nTo download the full dataset, remove '.head(20)' from line 80 of the script.")
 
 if __name__ == "__main__":
     main()
