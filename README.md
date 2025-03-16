@@ -1,35 +1,26 @@
 # ArtExtract GSOC 2025 - Evaluation Tasks
 
 ## Personal Introduction
-Hello! I'm Abhinav Kumar, a 2nd year Undergraduate student studying at IIT Roorkee, India. I have a strong interest in computer vision, deep learning. I have accepted papers at conferences like ICLR and AAAI in the domain of Computer Vision and I'm excited to present my solutions for the ArtExtract Projects evaluation tasks for Google Summer of Code 2025 under the HumanAI Umbrella Organization.
+Hello! I'm Abhinav Kumar, a 2nd-year Undergraduate student at IIT Roorkee, India. I have a strong interest in computer vision and deep learning. I have accepted papers in Computer Vision at conferences like ICLR 2025 and AAAI 2024. I'm excited to present my solutions for the ArtExtract Project evaluation tasks for Google Summer of Code 2025 under the HumanAI Umbrella Organization.
 
 ## Project Overview
-This repository contains my implementations for the two evaluation tasks:
+This repository contains my pytorch implementations for the two evaluation tasks:
 
-1. **Task 1: Convolutional-Recurrent Architectures** - A deep learning model for classifying artistic attributes (Style, Artist, Genre) using the ArtGAN dataset.
+1. **Task 1: Convolutional-Recurrent Architectures** - A deep learning model based on the NeurIPS 2021 paper titled [Recurrence along Depth: Deep Convolutional Neural
+Networks with Recurrent Layer Aggregation](https://proceedings.neurips.cc/paper_files/paper/2021/file/582967e09f1b30ca2539968da0a174fa-Paper.pdf) for classifying artistic attributes (Style, Artist, Genre) using the ArtGAN dataset.
 
-2. **Task 2: Similarity Analysis** - A model for discovering similarities between paintings using the National Gallery of Art open dataset.
-
-## Technologies Used
-- **Programming Language**: Python 3.8+
-- **Deep Learning Frameworks**: PyTorch 2.0, 
-- **Computer Vision Libraries**: OpenCV, PIL
-- **Data Processing**: NumPy, Pandas
-- **Visualization**: Matplotlib, Seaborn
-- **Development Environment**: Jupyter Notebooks, Google Colab
+2. **Task 2: Similarity Analysis** - A resnet-50 model trained as per Neurips 2020 paper titled [Bootstrap Your Own Latent
+A New Approach to Self-Supervised Learning](https://papers.nips.cc/paper/2020/file/f3ada80d5c4ee70142b17b8192b2958e-Paper.pdf) for discovering similarities between paintings using the National Gallery of Art open dataset.
 
 ## Repository Structure
 - `Task1-ConvRecurrent/`: Contains all code, notebooks, and results for Task 1
 - `Task2-Similarity/`: Contains all code, notebooks, and results for Task 2
-- `CV/`: Contains my curriculum vitae
-
-## Installation & Setup
 
 ### Prerequisites
 - Python 3.8 or higher
-- CUDA-capable GPU (recommended for training)
 
-### Environment Setup
+
+### Environment and Installation Setup
 ```bash
 # Clone this repository
 git clone https://github.com/[your-username]/ArtExtract-GSOC2025.git
