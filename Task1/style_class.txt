@@ -1,0 +1,16 @@
+0 Abstract_Expressionism
+1 Analytical_Cubism
+2 Art_Nouveau
+3 Baroque
+4 Cubism
+5 Expressionism
+6 Fauvism
+7 Impressionism
+8 Naive_Art_Primitivism
+9 Northern_Renaissance
+10 Pointillism
+11 Post_Impressionism
+12 Realism
+13 Romanticism
+14 Symbolism
+15 Synthetic_Cubism
