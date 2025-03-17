@@ -67,19 +67,20 @@ More details regarding the above observation and the results below are available
 
 | Model Type | Artist Accuracy | Style Accuracy | Genre Accuracy |
 |------------|----------------|---------------|----------------|
-| ResNet50 (Baseline) | 76.2% | 58.4% | 67.8% |
-| ResNet50 + SE | 77.9% | 60.1% | 69.2% |
-| ResNet50 + ECA | 78.1% | 60.0% | 69.4% |
-| ResNet50-LSTM | 79.4% | 62.5% | 70.8% |
-| ResNet50-LSTM + SE | 81.2% | 64.3% | 72.1% |
-| ResNet50-LSTM + CBAM | 80.5% | 63.8% | 71.5% |
+| ResNet50-RLA  | 85.62% | 75.0% | 81.62% | 80.75% |
+| ResNet50-RLA + SE | 84.12% | 77.12% | 80.38% | 80.54% |
+| ResNet50-RLA + ECA | 84.12% | 76.88% | 81.12% | 80.71% |
+| ResNet50-RLA + CBAM | 81.75% | 75.62% | 79.0% | 78.79% |
+
 
 ### Combined Model Performance
 
-| Model Type | Artist Accuracy | Style Accuracy | Genre Accuracy | Average |
+| Model Type | Artist Accuracy | Genre Accuracy | Style Accuracy | Average |
 |------------|----------------|---------------|----------------|---------|
-| ResNet50 (Baseline) | 74.8% | 56.2% | 65.4% | 65.5% |
-| ResNet50-LSTM + SE | 78.9% | 61.7% | 69.8% | 70.1% |
+| ResNet50-RLA  | 85.62% | 75.0% | 81.62% | 80.75% |
+| ResNet50-RLA + SE | 84.12% | 77.12% | 80.38% | 80.54% |
+| ResNet50-RLA + ECA | 84.12% | 76.88% | 81.12% | 80.71% |
+| ResNet50-RLA + CBAM | 81.75% | 75.62% | 79.0% | 78.79% |
 
 ### Key Findings
 
