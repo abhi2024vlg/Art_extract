@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project implements convolutional-recurrent neural network architectures to classify artwork based on three attributes (Artist, Style, and Genre) using the [WikiArt dataset](https://github.com/cs-chan/ArtGAN/tree/master/WikiArt%20Dataset). The implementation builds upon state-of-the-art research in recurrent convolutional networks, with several modifications for improving art classification.
+This project implements convolutional-recurrent neural network architectures to classify artwork based on three attributes (Artist, Style, and Genre) using the [WikiArt dataset](https://github.com/cs-chan/ArtGAN/tree/master/WikiArt%20Dataset). The implementation builds upon state-of-the-art research in recurrent convolutional networks, with several modifications for improving art classification. The trained model is used for further outlier detection for finding images which might have been assigned wrong labels.
 
 ## Dataset
 
@@ -11,16 +11,13 @@ The WikiArt dataset used in this project contains:
 - ~45,000 images labeled with genre information ( 10 classes)
 - ~57,000 images labeled with style information (27 classes)
 
-Due to these imbalances, I implemented the following training strategies:
+Due to these imbalances, I implemented the following training strategy:
 
-1. **Individual Attribute Models**: Separate models for Artist, Genre, and Style
-   - Artist: 11,000 training / 1,000 validation / 1,000 test images
-   - Genre & Style: Subset of 32,000 images (30,000 training / 1,000 validation / 1,000 test)
+**Combined Attribute Model**: Single model predicting all three attributes
+   - Used intersection of all labeled data (~16,000 images)
+   - 80% training / 10% validation / 10% test images ( Contained 23 artist classes, 10 genre classes but only 16 style classes)
 
-2. **Combined Attribute Model**: Single model predicting all three attributes
-   - Used intersection of all labeled data (~11,000 images)
-   - 10,000 training / 500 validation / 500 test images ( Contained 23 artist classes, 10 genre classes but only 16 style classes)
-
+Note: Taking intersection resulted in a loss of 11 style classes. 
 ## Methodology
 
 ### Literature Review
@@ -47,7 +44,7 @@ I experimented with several attention mechanisms to enhance model performance:
 1. **[Squeeze and Excitation (SE)](https://arxiv.org/abs/1709.01507)**: Channel attention mechanism that adaptively recalibrates channel-wise feature responses. (Available in paper codebase)
 2. **[Efficient Channel Attention (ECA)](https://arxiv.org/abs/1910.03151)**: Lightweight alternative to SE that uses 1D convolutions for local cross-channel interaction (Available in paper codebase)
 3. **[CBAM (Convolutional Block Attention Module)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Sanghyun_Woo_Convolutional_Block_Attention_ECCV_2018_paper.pdf)**: Combined spatial and channel attention (Integrated by me in their code)
-   - Interestingly, the full CBAM implementation (including spatial attention) sometimes degraded performance
+   - Interestingly, the full CBAM implementation (including spatial attention) degraded the performance
 
 #### Observation:-> Different Channel attention mechanisms proposed across all three mechanisms consistently improved results across all models
 
@@ -58,51 +55,42 @@ The original paper proposing resnet_rla_lstm had a somewhat outdated training me
 
 ## Implementation Details
 
-More details regarding the above observation and the results below are available in the code notebook. I have discussed everything I have faced throughout the project, along with proper documentation.
-
+More details regarding the above observation and the results below are available in the code notebook. I have discussed every problem I faced throughout the project, along with proper documentation.
 
 ## Results and Analysis
 
-### Individual Attribute Models
-
-| Model Type | Artist Accuracy | Style Accuracy | Genre Accuracy |
-|------------|----------------|---------------|----------------|
-| ResNet50-RLA  | 85.62% | 75.0% | 81.62% | 80.75% |
-| ResNet50-RLA + SE | 84.12% | 77.12% | 80.38% | 80.54% |
-| ResNet50-RLA + ECA | 84.12% | 76.88% | 81.12% | 80.71% |
-| ResNet50-RLA + CBAM | 81.75% | 75.62% | 79.0% | 78.79% |
-
-
-### Combined Model Performance
+### Model Performance
 
 | Model Type | Artist Accuracy | Genre Accuracy | Style Accuracy | Average |
 |------------|----------------|---------------|----------------|---------|
-| ResNet50-RLA  | 85.62% | 75.0% | 81.62% | 80.75% |
-| ResNet50-RLA + SE | 84.12% | 77.12% | 80.38% | 80.54% |
-| ResNet50-RLA + ECA | 84.12% | 76.88% | 81.12% | 80.71% |
-| ResNet50-RLA + CBAM | 81.75% | 75.62% | 79.0% | 78.79% |
+| ResNet50-RLA  | 79.96% | 70.12% | 77.04% | 75.71% |
+| ResNet50-RLA + SE | 81.21% | 72.34% | 79.34% | 77.63% |
+| ResNet50-RLA + ECA | 79.26% | 70.21% | 77.75% | 75.74% |
+| ResNet50-RLA + CBAM | 76.77% | 68.88% | 75.44% | 73.70% |
 
 ### Key Findings
 
-1. The recurrent component (LSTM) consistently improved performance across all classification tasks
-2. Channel attention mechanisms provided further gains, with SE attention being most effective
-3. The combined model showed slight performance degradation compared to individual models, likely due to the complexity of jointly modeling multiple attributes
-4. Spatial attention from CBAM unexpectedly reduced performance in some cases, suggesting that channel relationships are more important than spatial relationships for art classification
-5. Data augmentation improvements provided a significant boost (2-3% accuracy) compared to the techniques described in the original papers
+1. The recurrent component (LSTM) consistently performed well across all classification tasks and model variants.
+2. Channel attention mechanisms provided further gains, with SE attention being most effective.
+3. Spatial attention from CBAM unexpectedly reduced performance, suggesting that channel relationships are more important than spatial relationships for art classification.
 
 ## Challenges and Solutions
 
-1. **Dataset Imbalance**: Addressed through careful subset selection and stratified sampling
-2. **Model Complexity vs. Performance**: Found optimal balance with ResNet50-LSTM + SE architecture
-3. **Training Stability**: Improved through learning rate scheduling and gradient clipping
-4. **Overfitting**: Mitigated with enhanced data augmentation and regularization techniques
+1. **Dataset Imbalance**: Addressed through careful datasset manipulation using numpy panadas.
+2. **Model Complexity vs. Performance**: Found optimal balance with ResNet50-LSTM + SE architecture.
+3. **Training Stability**: Improved through learning rate scheduling and improved optimizer.
+4. **Overfitting**: Mitigated with enhanced data augmentation, regularization techniques and early weight saving.
 
-## Future Work
+## Outlier detection
 
-1. Implement outlier detection to identify misattributed artworks
-2. Explore multi-task learning approaches to better leverage relationships between artist, style, and genre
-3. Investigate transfer learning from natural image domains to artistic domains
+This project focuses on detecting outliers in image data using deep learning techniques and dimensionality reduction methods.
 
+We choosed the best classifier model (ResNet50-RLA + SE) for outlier detection. 
 
-## Repository Structure
+For extracting image embeddings, I removed the final fully connected layer in model architecture. This allowed us to obtain high-dimensional feature representations of the images. 
 
+Using this modified model, we generated embeddings for all images in our test dataset.
+
+### Confusion Matrix Visualization
+
+We created a confusion matrix using the extracted embeddings to visualize the model's performance and identify potential misclassifications or outliers.
