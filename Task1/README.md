@@ -46,7 +46,8 @@ I experimented with several attention mechanisms to enhance model performance:
 1. **[Squeeze and Excitation (SE)](https://arxiv.org/abs/1709.01507)**: Channel attention mechanism that adaptively recalibrates channel-wise feature responses (available in paper codebase).
 2. **[Efficient Channel Attention (ECA)](https://arxiv.org/abs/1910.03151)**: Lightweight alternative to SE that uses 1D convolutions for local cross-channel interaction (available in paper codebase).
 3. **[CBAM (Convolutional Block Attention Module)](https://openaccess.thecvf.com/content_ECCV_2018/papers/Sanghyun_Woo_Convolutional_Block_Attention_ECCV_2018_paper.pdf)**: Combined spatial and channel attention (integrated by me into the existing code).
-   - Interestingly, the full CBAM implementation (including spatial attention) degraded performance.
+
+Interestingly, the full CBAM implementation (including spatial attention) degraded performance.
 
 **Key Observation**: Different channel attention mechanisms consistently improved results across all models, with SE attention yielding the best performance.
 
