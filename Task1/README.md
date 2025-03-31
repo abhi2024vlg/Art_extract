@@ -65,10 +65,10 @@ The accompanying code notebook contains more detailed information regarding the 
 
 | Model Type | Artist Accuracy | Genre Accuracy | Style Accuracy | Average |
 |------------|----------------|---------------|----------------|---------|
-| ResNet50-RLA  | 79.96% | 70.12% | 77.04% | 75.71% |
-| ResNet50-RLA + SE | 81.21% | 72.34% | 79.34% | 77.63% |
-| ResNet50-RLA + ECA | 79.26% | 70.21% | 77.75% | 75.74% |
-| ResNet50-RLA + CBAM | 76.77% | 68.88% | 75.44% | 73.70% |
+| ResNet50-RLA  | 81.96% | 72.12% | 78.04% | 77.61% |
+| ResNet50-RLA + SE | 83.05% | 74.86% | 80.86% | 79.59% |
+| ResNet50-RLA + ECA | 81.26% | 72.21% | 78.75% | 77.24% |
+| ResNet50-RLA + CBAM | 78.77% | 70.88% | 76.44% | 75.30% |
 
 ### Key Findings
 
