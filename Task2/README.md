@@ -38,6 +38,34 @@ I selected the BYOL methodology based on the following considerations:
 
 ### Implementation Details
 
+## Dataset and Data Loading
+- **Custom Datasets:**  
+  Created custom `BaseArtDataset`, `ByolTrainDataset`, and `MetricEvalDataset` classes for handling the art images.
+- **Data Loading Strategies:**  
+  Implemented separate strategies for:
+  - **Training:** Single image input.
+  - **Evaluation:** Pairs of augmentations.
+- **Data Splitting:**  
+  Used `random_split` to create train, validation, and test splits from the unlabeled dataset.
+
+## Network Architecture
+- **Backbone Encoder:**  
+  Utilized ResNet50 (pretrained) as the backbone encoder.
+- **BYOL Implementation:**  
+  Implemented BYOL with the `byol_pytorch` library, configured to use the "avgpool" layer as the hidden representation.
+- **Simplified Target Encoder:**  
+  Disabled momentum updates in the target encoder for simplicity.
+
+## Training Process
+- **Epochs & Scheduling:**  
+  Trained for 100 epochs using a cosine learning rate schedule with a 10-epoch warmup.
+- **Optimizer:**  
+  Employed the Adam optimizer with a base learning rate of 3e-4.
+- **Evaluation:**  
+  Performed evaluation every 10 epochs to monitor progress using intrinsic metrics.
+
+
+
 The BYOL approach was implemented with the following components:
 
 1. **Augmentation Strategy**:
@@ -93,5 +121,85 @@ The project repository is organized as follows:
 
 - **Data Collection**:
   - `dataset.py`: Script for downloading images from the National Gallery of Art repository
+ 
+
 
 - **Model Implementation**:
+
+
+
+
+
+
+
+## Evaluation Metrics
+- **Alignment Loss:**  
+  Measures how close embeddings of augmented views of the same image are (lower is better).
+- **Uniformity Loss:**  
+  Assesses how well the embeddings are distributed on the unit hypersphere (lower is better).
+- **CLIP Score:**  
+  Used as a reference to compare the model's similarity results with a pre-trained vision-language model.
+
+# Results and Analysis
+
+## Model Performance
+The model was evaluated using intrinsic metrics on the test set:
+- **Alignment:** Value from `test_align`
+- **Uniformity:** Value from `test_uniform`
+- **Total Metric:** Value from `test_total`
+
+## Visual Similarity Analysis
+- **Top Similar Pairs:**  
+  The `find_top_similar_pairs` function identified the most visually similar artworks based on the learned embeddings.
+- **Comparison with CLIP:**  
+  Each pair's similarity was also evaluated using CLIP embeddings for reference.
+- **Visualization:**  
+  Results were visualized by displaying both source images along with their similarity scores from both BYOL and CLIP models.
+
+## Key Findings
+- **Representation Learning:**  
+  The model successfully learned to identify similarities in artistic style, composition, and subject matter without explicit labels.
+- **Correlation with CLIP:**  
+  There was a notable correlation between the similarity scores from the self-supervised BYOL model and the CLIP model, suggesting meaningful representation learning.
+- **Nuanced Relationships:**  
+  The model captured nuanced visual relationships that extend beyond simple color or composition similarities.
+
+## Challenges and Solutions
+- **Data Management:**  
+  Implemented efficient data loaders with proper augmentation strategies for both training and evaluation.
+- **Evaluation Without Labels:**  
+  Developed intrinsic metrics based on representation learning theory to evaluate model performance.
+- **Scalability:**  
+  Utilized GPU acceleration and optimized batch sizes to handle computational requirements.
+- **Visualization:**  
+  Created custom visualization functions to qualitatively assess the model's performance.
+
+# Repository Structure
+
+The project consists of two main components:
+
+## `dataset.py`
+- Contains functions for downloading images from the National Gallery of Art repository.
+- Includes code for creating the unlabeled dataset of artwork images.
+
+## `similar-images.ipynb`
+- Contains the complete implementation of the BYOL model and training process.
+- Implements custom dataset classes for art images.
+- Provides data loading utilities with proper augmentation strategies.
+- Features a training loop with evaluation using intrinsic metrics.
+- Implements similarity detection functions.
+- Includes CLIP score evaluation for comparison.
+- Provides visualization tools for qualitative analysis.
+
+### Notebook Components
+- **Data Processing:**  
+  Custom dataset implementations.
+- **Model Definition:**  
+  BYOL architecture implementation.
+- **Training:**  
+  Complete training loop with progress tracking.
+- **Evaluation:**  
+  Intrinsic metrics and similarity detection.
+- **Visualization:**  
+  Functions to render and compare similar image pairs.
+
