@@ -7,45 +7,27 @@ Hello! I'm Abhinav Kumar, a 2nd-year Undergraduate student at IIT Roorkee, India
 This repository contains my pytorch implementations for the two evaluation tasks:
 
 1. **Task 1: Convolutional-Recurrent Architectures** - A deep learning model based on the NeurIPS 2021 paper titled [Recurrence along Depth: Deep Convolutional Neural
-Networks with Recurrent Layer Aggregation](https://proceedings.neurips.cc/paper_files/paper/2021/file/582967e09f1b30ca2539968da0a174fa-Paper.pdf) for classifying artistic attributes (Style, Artist, Genre) using the ArtGAN dataset.
+Networks with Recurrent Layer Aggregation](https://proceedings.neurips.cc/paper_files/paper/2021/file/582967e09f1b30ca2539968da0a174fa-Paper.pdf) for classifying artistic attributes (Style, Artist, Genre) using the ArtGAN dataset and outlier detection.
 
 2. **Task 2: Similarity Analysis** - A resnet-50 model trained as per Neurips 2020 paper titled [Bootstrap Your Own Latent
 A New Approach to Self-Supervised Learning](https://papers.nips.cc/paper/2020/file/f3ada80d5c4ee70142b17b8192b2958e-Paper.pdf) for discovering similarities between paintings using the National Gallery of Art open dataset.
 
 ## Repository Structure
-- `Task1-ConvRecurrent/`: Contains all code, notebooks, and results for Task 1
-- `Task2-Similarity/`: Contains all code, notebooks, and results for Task 2
+- `Task1/`: Contains all code, notebooks, and results for Task 1
+- `Task2/`: Contains all code, notebooks, and results for Task 2
 
-### Prerequisites
-- Python 3.8 or higher
-
-
-### Environment and Installation Setup
-```bash
-# Clone this repository
-git clone https://github.com/[your-username]/ArtExtract-GSOC2025.git
-cd ArtExtract-GSOC2025
-
-# Create a virtual environment
-python -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
 
 ### Dataset Preparation
-- **Task 1**: Instructions for obtaining and preparing the ArtGAN dataset can be found in `Task1-ConvRecurrent/README.md`
-- **Task 2**: Instructions for obtaining and preparing the National Gallery of Art dataset can be found in `Task2-Similarity/README.md`
+- **Task 1**: Instructions for obtaining and preparing the ArtGAN dataset can be found in `Task1/README.md`
+- **Task 2**: Instructions for obtaining and preparing the National Gallery of Art dataset can be found in `Task2/README.md`
 
 ## Task Summaries
 
 ### Task 1: Convolutional-Recurrent Architectures
-I implemented a hybrid CNN-LSTM architecture to classify artistic attributes. The model achieves [brief mention of performance metrics] accuracy on style classification and [brief mention of performance metrics] accuracy on artist attribution.
+I implemented a hybrid CNN-LSTM architecture to classify artistic attributes. The model achieves 83.05 accuracy on artist classification, 74.86 percent on genre classification and 80.86 accuracy on style classification.
+<img width="848" alt="Screenshot 2025-03-31 at 12 45 53 PM" src="https://github.com/user-attachments/assets/739ae7b1-2f8f-4941-a138-8a713106d7a7" />
 
-[Optional: Add a sample image or result visualization]
-
-For detailed methodology and results, see [Task1-ConvRecurrent/README.md](Task1-ConvRecurrent/README.md).
+For detailed methodology and results, see [Task1/README.md](Task1/README.md).
 
 ### Task 2: Similarity Analysis
 For similarity detection, I implemented a Siamese network with a custom triplet loss function. The model successfully identifies similar artistic elements across different paintings with a [brief mention of performance metric] retrieval accuracy.
