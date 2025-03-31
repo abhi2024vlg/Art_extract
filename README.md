@@ -35,8 +35,9 @@ For detailed methodology and results, see [Task1/README.md](Task1/README.md).
 
 ### Task 2: Similarity Analysis
 For similarity detection, I implemented a Siamese network proposed in the paper [Bootstrap Your Own Latent
-A New Approach to Self-Supervised Learning](https://papers.nips.cc/paper/2020/file/f3ada80d5c4ee70142b17b8192b2958e-Paper.pdf). The model successfully identifies similar artistic elements across different paintings with a [_] Clip score.
+A New Approach to Self-Supervised Learning](https://papers.nips.cc/paper/2020/file/f3ada80d5c4ee70142b17b8192b2958e-Paper.pdf). The model successfully identifies similar artistic elements across different paintings with an average of 0.79114 Clip score on topmost similar pairs.
 
+<img width="894" alt="Screenshot 2025-04-01 at 12 22 42 AM" src="https://github.com/user-attachments/assets/e00cb2d6-3e98-4cdf-a3a4-3f6cc8e6abf1" />
 
 
 For detailed methodology and results, see [Task2/README.md](Task2/README.md).
