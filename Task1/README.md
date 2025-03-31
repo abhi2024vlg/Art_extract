@@ -135,11 +135,11 @@ The project repository is organized as follows:
 - **Dataset Preparation**:
   - `dataset.ipynb`: This notebook contains code for creating the merged dataset (`merged_wikiart_dataset.csv`). The process involves taking the intersection of the three original WikiArt CSV files and remapping class labels for consistent processing.
 
-- **Model Development**:
+- **Model Debugging**:
   - `model-testing.ipynb`: This notebook was used for testing and debugging different model variants using dummy data before full-scale training.
 
-- **Core Implementation**:
+- **Classifier Implementation**:
   - `classification.ipynb`: The primary notebook containing code for image attribute classification, including model training, validation, and testing.
 
-- **Analysis and Evaluation**:
+- **Outlier Detection**:
   - `outlier-detection.ipynb`: This notebook contains code that utilizes the trained model from `classification.ipynb` to perform outlier detection on the test dataset.
