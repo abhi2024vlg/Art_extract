@@ -76,9 +76,9 @@ I selected the BYOL methodology based on the following considerations:
 
 #### Model Performance
 The model was evaluated using intrinsic metrics on the test set:
-- **Alignment:** Value from `test_align`
-- **Uniformity:** Value from `test_uniform`
-- **Total Metric:** Value from `test_total`
+- **Alignment:** Value from 4.6695
+- **Uniformity:** Value from  -4.9815
+- **Total Metric:** Value from  -0.3120
 
 #### Visual Similarity Analysis
 - **Top Similar Pairs:**  
@@ -101,8 +101,6 @@ The model was evaluated using intrinsic metrics on the test set:
   Implemented efficient data loaders with proper augmentation strategies for both training and evaluation.
 - **Evaluation Without Labels:**  
   Developed intrinsic metrics based on representation learning theory to evaluate model performance.
-- **Scalability:**  
-  Utilized GPU acceleration and optimized batch sizes to handle computational requirements.
 - **Visualization:**  
   Created custom visualization functions to qualitatively assess the model's performance.
 
