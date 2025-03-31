@@ -38,7 +38,7 @@ I selected the BYOL methodology based on the following considerations:
 
 ### Implementation Details
 
-## Dataset and Data Loading
+#### Dataset and Data Loading
 - **Custom Datasets:**  
   Created custom `BaseArtDataset`, `ByolTrainDataset`, and `MetricEvalDataset` classes for handling the art images.
 - **Data Loading Strategies:**  
@@ -48,7 +48,7 @@ I selected the BYOL methodology based on the following considerations:
 - **Data Splitting:**  
   Used `random_split` to create train, validation, and test splits from the unlabeled dataset.
 
-## Network Architecture
+#### Network Architecture
 - **Backbone Encoder:**  
   Utilized ResNet50 (pretrained) as the backbone encoder.
 - **BYOL Implementation:**  
@@ -56,7 +56,7 @@ I selected the BYOL methodology based on the following considerations:
 - **Simplified Target Encoder:**  
   Disabled momentum updates in the target encoder for simplicity.
 
-## Training Process
+#### Training Process
 - **Epochs & Scheduling:**  
   Trained for 100 epochs using a cosine learning rate schedule with a 10-epoch warmup.
 - **Optimizer:**  
@@ -64,75 +64,7 @@ I selected the BYOL methodology based on the following considerations:
 - **Evaluation:**  
   Performed evaluation every 10 epochs to monitor progress using intrinsic metrics.
 
-
-
-The BYOL approach was implemented with the following components:
-
-1. **Augmentation Strategy**:
-   - Two different augmentations of each image are created
-   - One serves as the "view" for the online network, the other for the target network
-
-2. **Network Architecture**:
-   - Online network: Encoder + Projector + Predictor
-   - Target network: Encoder + Projector (weights updated via exponential moving average)
-
-3. **Training Process**:
-   - The predictor from the online network aims to predict the target network's projection
-   - Loss is calculated as the negative cosine similarity between the prediction and target
-   - Target network parameters are updated using exponential moving average (EMA) of online network
-
-4. **Evaluation Metrics**:
-   - Based on **Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere**
-   - Alignment: Measures how close embeddings of similar samples are
-   - Uniformity: Measures how well the embeddings are distributed on the unit hypersphere
-   - CLIP Score: Used as a proxy metric for visual examination and analysis
-
-## Results and Analysis
-
-### Model Performance
-
-| Metric | Value |
-|--------|-------|
-| Alignment | [TO BE FILLED] |
-| Uniformity | [TO BE FILLED] |
-| CLIP Score | [TO BE FILLED] |
-
-### Key Findings
-
-- [TO BE FILLED]
-- [TO BE FILLED]
-- [TO BE FILLED]
-
-### Visualization Results
-
-- [TO BE FILLED]
-- [TO BE FILLED]
-
-## Challenges and Solutions
-
-- **No Labeled Data**: Addressed through self-supervised learning using BYOL, which learns meaningful representations without explicit labels.
-- **Representation Collapse**: Prevented through the asymmetric architecture and moving average update of the target network.
-- **Training Stability**: Improved by using appropriate augmentation strategies and optimization techniques.
-- **Evaluation without Ground Truth**: Solved by using intrinsic metrics (alignment and uniformity) and proxy metrics (CLIP Score).
-
-## Repository Structure
-
-The project repository is organized as follows:
-
-- **Data Collection**:
-  - `dataset.py`: Script for downloading images from the National Gallery of Art repository
- 
-
-
-- **Model Implementation**:
-
-
-
-
-
-
-
-## Evaluation Metrics
+#### Evaluation Metrics
 - **Alignment Loss:**  
   Measures how close embeddings of augmented views of the same image are (lower is better).
 - **Uniformity Loss:**  
@@ -140,15 +72,15 @@ The project repository is organized as follows:
 - **CLIP Score:**  
   Used as a reference to compare the model's similarity results with a pre-trained vision-language model.
 
-# Results and Analysis
+### Results and Analysis
 
-## Model Performance
+#### Model Performance
 The model was evaluated using intrinsic metrics on the test set:
 - **Alignment:** Value from `test_align`
 - **Uniformity:** Value from `test_uniform`
 - **Total Metric:** Value from `test_total`
 
-## Visual Similarity Analysis
+#### Visual Similarity Analysis
 - **Top Similar Pairs:**  
   The `find_top_similar_pairs` function identified the most visually similar artworks based on the learned embeddings.
 - **Comparison with CLIP:**  
@@ -156,7 +88,7 @@ The model was evaluated using intrinsic metrics on the test set:
 - **Visualization:**  
   Results were visualized by displaying both source images along with their similarity scores from both BYOL and CLIP models.
 
-## Key Findings
+#### Key Findings
 - **Representation Learning:**  
   The model successfully learned to identify similarities in artistic style, composition, and subject matter without explicit labels.
 - **Correlation with CLIP:**  
@@ -164,7 +96,7 @@ The model was evaluated using intrinsic metrics on the test set:
 - **Nuanced Relationships:**  
   The model captured nuanced visual relationships that extend beyond simple color or composition similarities.
 
-## Challenges and Solutions
+#### Challenges and Solutions
 - **Data Management:**  
   Implemented efficient data loaders with proper augmentation strategies for both training and evaluation.
 - **Evaluation Without Labels:**  
@@ -174,15 +106,15 @@ The model was evaluated using intrinsic metrics on the test set:
 - **Visualization:**  
   Created custom visualization functions to qualitatively assess the model's performance.
 
-# Repository Structure
+## Repository Structure
 
 The project consists of two main components:
 
-## `dataset.py`
+### `dataset.py`
 - Contains functions for downloading images from the National Gallery of Art repository.
 - Includes code for creating the unlabeled dataset of artwork images.
 
-## `similar-images.ipynb`
+### `similar-images.ipynb`
 - Contains the complete implementation of the BYOL model and training process.
 - Implements custom dataset classes for art images.
 - Provides data loading utilities with proper augmentation strategies.
@@ -191,7 +123,7 @@ The project consists of two main components:
 - Includes CLIP score evaluation for comparison.
 - Provides visualization tools for qualitative analysis.
 
-### Notebook Components
+#### Notebook Components
 - **Data Processing:**  
   Custom dataset implementations.
 - **Model Definition:**  
@@ -202,4 +134,3 @@ The project consists of two main components:
   Intrinsic metrics and similarity detection.
 - **Visualization:**  
   Functions to render and compare similar image pairs.
-
