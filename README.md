@@ -27,20 +27,24 @@ A New Approach to Self-Supervised Learning](https://papers.nips.cc/paper/2020/fi
 I implemented a hybrid CNN-LSTM architecture to classify artistic attributes. The model achieves 83.05 accuracy on artist classification, 74.86 percent on genre classification and 80.86 accuracy on style classification.
 <img width="848" alt="Screenshot 2025-03-31 at 12 45 53 PM" src="https://github.com/user-attachments/assets/739ae7b1-2f8f-4941-a138-8a713106d7a7" />
 
+### Outlier Detection
+I used the trained classifier model from previous task and used its final embedding for clustering and outlier detection. I visualised the SNE plot and confusion matrix for all three attributes.
+<img width="680" alt="Screenshot 2025-03-31 at 1 10 46 PM" src="https://github.com/user-attachments/assets/f80b0b7d-f23a-43ea-9900-68b7eb71f945" />
+
 For detailed methodology and results, see [Task1/README.md](Task1/README.md).
 
 ### Task 2: Similarity Analysis
-For similarity detection, I implemented a Siamese network with a custom triplet loss function. The model successfully identifies similar artistic elements across different paintings with a [brief mention of performance metric] retrieval accuracy.
+For similarity detection, I implemented a Siamese network proposed in the paper [Bootstrap Your Own Latent
+A New Approach to Self-Supervised Learning](https://papers.nips.cc/paper/2020/file/f3ada80d5c4ee70142b17b8192b2958e-Paper.pdf). The model successfully identifies similar artistic elements across different paintings with a [_] Clip score.
 
-[Optional: Add a sample image or result visualization]
 
-For detailed methodology and results, see [Task2-Similarity/README.md](Task2-Similarity/README.md).
+
+For detailed methodology and results, see [Task2/README.md](Task2/README.md).
 
 ## Key Results & Contributions
 - Developed an effective approach for multi-label art classification
 - Identified and analyzed outliers in artistic style attribution
-- Created a novel similarity metric for comparing compositional elements
-- Demonstrated effective transfer learning from natural images to artistic domains
+- Demonstrated effective transfer learning from natural images to artistic domains for similar images using pre-trained resnet50 model.
 
 
 
