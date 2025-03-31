@@ -87,9 +87,7 @@ The accompanying code notebook contains more detailed information regarding the 
 
 This project focuses on detecting outliers in image data using deep learning techniques and dimensionality reduction methods.
 
-I selected the best classifier model (ResNet50-RLA + SE) for outlier detection. For extracting image embeddings, I removed the final fully connected layer in the model architecture, allowing me to obtain high-dimensional feature representations of the images.
-
-I generated embeddings for all images in the test dataset using this modified model.
+I selected the best classifier model (ResNet50-RLA + SE) for outlier detection. For extracting image embeddings, I removed the final fully connected layer in the model architecture, allowing me to obtain high-dimensional feature representations of the images. This way,I generated embeddings for all images in the test dataset using this modified model.
 
 ### Confusion Matrix Visualization
 
@@ -126,3 +124,22 @@ K-means clustering (k=16) style shows moderately distinct clusters with some ove
 ## Image Visualization
 
 Finally, I visualized the top three outliers according to the model's predictions. These are images that the model identifies as potentially having all three attributes (Artist, Style, and Genre) mislabeled.
+
+## Repository Structure
+
+The project repository is organized as follows:
+
+- **Class Mapping Files**:
+  - `artist_class.txt`, `genre_class.txt`, `style_class.txt`: These files map class labels to numerical values for model training and evaluation.
+
+- **Dataset Preparation**:
+  - `dataset.ipynb`: This notebook contains code for creating the merged dataset (`merged_wikiart_dataset.csv`). The process involves taking the intersection of the three original WikiArt CSV files and remapping class labels for consistent processing.
+
+- **Model Development**:
+  - `model-testing.ipynb`: This notebook was used for testing and debugging different model variants using dummy data before full-scale training.
+
+- **Core Implementation**:
+  - `classification.ipynb`: The primary notebook containing code for image attribute classification, including model training, validation, and testing.
+
+- **Analysis and Evaluation**:
+  - `outlier-detection.ipynb`: This notebook contains code that utilizes the trained model from `classification.ipynb` to perform outlier detection on the test dataset.
